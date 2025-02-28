@@ -20,8 +20,8 @@ afișează un mesaj în acest sens.
 încărcării fiecărui angajat cu cereri.
 
 4. - raportări:
-- angajatul cu cele mai multe comenzi procesate
-- top 3 angajați care au gestionat cele mai valoroase comenzi (în valoare sunt incluse
+  - angajatul cu cele mai multe comenzi procesate
+  - top 3 angajați care au gestionat cele mai valoroase comenzi (în valoare sunt incluse
 costurile de impachetare și livrare) – ordonați descrescător in funcție de valoarea comenzii
-- top 3 angajați cu cel mai mare salariu în luna curentă – ordonați in funcție de nume si
+  - top 3 angajați cu cel mai mare salariu în luna curentă – ordonați in funcție de nume si
 prenume.
