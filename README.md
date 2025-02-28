@@ -1,7 +1,7 @@
-***# ROCK-the-SHOP***
+**# ROCK-the-SHOP**
 **Sistem pentru administrarea unui magazin**
 
-Pe alocuri veti intalni erori atat logice, cat si ilogice.\n
+Pe alocuri veti intalni erori atat logice, cat si ilogice.
 Proiect in decurs de lucru, fara testarea corner cazurilor limită.
 
 *II. Funcționalități minimale*
