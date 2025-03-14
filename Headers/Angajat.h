@@ -7,7 +7,7 @@ using namespace std;
 
 
 class Angajat{
-private:
+protected:
     int id;
     string nume, prenume;
     string cnp;
@@ -25,7 +25,7 @@ public:
     string getCNP() const;
     tm getDataAngajare() const;
 
-    virtual void calculeazaSalariu();
+    virtual double calculeazaSalariu();
     void setNumePrenume(string&, string&);
     virtual void afiseazaDetalii();
 };

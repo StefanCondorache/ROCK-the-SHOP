@@ -16,17 +16,21 @@ Angajat::Angajat(const int &id, const string &nume, const string &prenume, const
         this->nume = nume;
         this->prenume = prenume;
     }
+    else{
+        throw invalid_argument("Numele sau prenume introdus gresit");
+    }
 
     if( isValidCNP(cnp) ){
         this->cnp = cnp;
     }
 }
 
-void Angajat::calculeazaSalariu(){
+double Angajat::calculeazaSalariu(){
     time_t t = time(nullptr);
     tm *now = localtime(&t);
     int yearsOfService = now->tm_year - this->dataAngajare.tm_year;
     this->salariu = (this->salariu + 100 * yearsOfService) * this->coeficientSalarial;
+    return this->salariu;
 }
 
 int Angajat::getId() const {
@@ -62,7 +66,7 @@ void Angajat::afiseazaDetalii(){
     cout << "Prenume: " << this->prenume << "\n";
     cout << "CNP: " << this->cnp << "\n";
     cout << "Data de angajare: " << this->dataAngajare.tm_mday << "/" << this->dataAngajare.tm_mon + 1 << "/" << this->dataAngajare.tm_year + 1900 << "\n";
-    cout << "Salariu: " << calculeazaSalariu() << "\n";
+    cout << "Salariu: " << calculeazaSalariu() << "\n" << endl;
 }
 
 

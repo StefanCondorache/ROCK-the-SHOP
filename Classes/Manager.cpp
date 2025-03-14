@@ -5,11 +5,12 @@
 
 using namespace std;
 
-Manager::Manager(int &id, string &nume, string &prenume, string &cnp, tm &dataAngajare):Angajat(id, nume, prenume, cnp, dataAngajare, 1.25){}
+Manager::Manager(const int& id, string nume, string prenume, string cnp, tm dataAngajare):
+    Angajat(id, nume, prenume, cnp, dataAngajare, 1.25){}
 
 
-void Manager::calculeazaSalariu(){
-    Angajat::calculeazaSalariu();
+double Manager::calculeazaSalariu(){
+    return Angajat::calculeazaSalariu();
 }
 
 void Manager::afiseazaDetalii(){

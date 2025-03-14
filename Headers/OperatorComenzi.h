@@ -9,14 +9,14 @@ using namespace std;
 
 class OperatorComenzi: public Angajat{
 protected:
-    Comanda comenzi[3];
     int nrComenzi = 0;
     double bonusComenzi;
 public:
-    OperatorComenzi(int&, string&, string&, string&, tm&);
+    OperatorComenzi(const int&, const string&, const string&, const string&, tm&);
     int getNrComenzi() const;
-    void preluareaComenzii(double);
-    void calculeazaSalariu();
+    double getBonusComenzi() const;
+    void preluareaComenzii(const Comanda&);
+    double calculeazaSalariu() override;
     void afiseazaDetalii();
 
 };

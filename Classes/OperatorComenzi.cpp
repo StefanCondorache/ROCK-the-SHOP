@@ -5,21 +5,26 @@
 
 using namespace std;
 
-OperatorComenzi::OperatorComenzi(int &id, string &nume, string &prenume, string &cnp, tm &data_angajare):Angajat(id, nume, prenume, cnp, data_angajare, 1.0){}
+OperatorComenzi::OperatorComenzi(const int &id, const string &nume, const string &prenume, const string &cnp, tm &data_angajare):
+    Angajat(id, nume, prenume, cnp, data_angajare, 1.0){}
 
-void OperatorComenzi::calculeazaSalariu(){
+double OperatorComenzi::calculeazaSalariu(){
     Angajat::calculeazaSalariu();
     this->salariu += this->bonusComenzi;
+    return this->salariu;
 }
 
 int OperatorComenzi::getNrComenzi() const {
-    return nrComenzi;
+    return this->nrComenzi;
 }
 
-void OperatorComenzi::preluareaComenzii(Comanda &comanda){
-    this->comenzi[nrComenzi] = comanda;
-    this->bonusComenzi += 0.005 * comanda->valoareComanda;
-    this->nrComenzi++ ;
+double OperatorComenzi::getBonusComenzi() const {
+    return this->bonusComenzi;
+}
+
+void OperatorComenzi::preluareaComenzii(const Comanda& comanda) {
+    this->bonusComenzi += 0.005 * comanda.getValoare();
+    this->nrComenzi++;
 }
 
 void OperatorComenzi::afiseazaDetalii(){

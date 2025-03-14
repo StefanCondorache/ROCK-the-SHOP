@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include <ctime>
 #include "Produs.h"
@@ -6,22 +5,23 @@
 
 using namespace std;
 
-class Comanda{
+class Comanda {
+private:
     int idComanda;
-    vector<Produs*> produseComandate;
-    double valoareComanda = 0.0;
-    int procesareTimp;
-    tm dataComanda;
+    tm dataComenzii;
+    int durata;
+    double valoare;
+    vector<Produs*> produse;
 
 public:
-    Comanda(const int&, const vector<Produs*> &, const tm&, int procesareTimp);
-
+    Comanda(int id, const tm& data, int durata);
     int getIdComanda() const;
-    vector<Produs*> getComenzi() const;
-    tm getDataComanda() const;
-    int getProcesareTimp() const;
-    double getValoareComanda() const;
-    void calculeazaValoareComanda();
-    bool comandaValida() const;
-    void afisareaComenzii() const;
+    tm getDataComenzii() const;
+    int getDurata() const;
+    double getValoare() const;
+    void adaugaProdus(Produs* produs);
+    void calculeazaValoare();
+    void afiseazaDetalii() const;
+    vector<Produs*> getProduse() const;
 };
+

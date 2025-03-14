@@ -7,6 +7,7 @@ using namespace std;
 Produs::Produs(const int &cod, const string &denumire, int stoc, double pretBaza):
    codProdus(cod), denumire(denumire), stoc(stoc), pretBaza(pretBaza) {}
 
+
 int Produs::getCod() const {
     return codProdus;
 }
@@ -26,6 +27,11 @@ double Produs::getPretBaza() const {
 void Produs::setStoc(int stoc){
     this->stoc = stoc;
 }
+
+void Produs::calculeazaPretFinal() {
+    this->pretBaza = 0;
+}
+
 
 void Produs::afiseazaDetalii() const {
     cout << "Cod: " << codProdus << "\n";

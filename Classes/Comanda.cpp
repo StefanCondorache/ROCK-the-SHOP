@@ -1,70 +1,50 @@
-#include <iostream>
 #include "Comanda.h"
-#include "Disc.h"
-#include "DiscVintage.h"
-#include "ArticolVestimentar.h"
-#include <cstring>
-#include <ctime>
+#include <iostream>
 
 using namespace std;
 
-Comanda::Comanda(const int &id, const vector<Produs*> &produse, const tm &dataComanda, int procesareTimp):
-    idComanda(id), produseComandate(produse), dataComanda(dataComanda), procesareTimp(procesareTimp), valoareComanda(0.0) {
-    calculeazaValoareComanda();
-}
-
-void Comanda::calculeazaValoareComanda(){
-    for(const auto &produs : produseComandate){
-        this->valoareComanda += produs->getPretBaza();
-    }
-}
-
+Comanda::Comanda(int id, const tm& data, int durata)
+    : idComanda(id), dataComenzii(data), durata(durata), valoare(0.0) {}
 
 int Comanda::getIdComanda() const {
     return idComanda;
 }
 
-vector<Produs*> Comanda::getComenzi() const {
-    return produseComandate;
+tm Comanda::getDataComenzii() const {
+    return dataComenzii;
 }
 
-tm Comanda::getDataComanda() const{
-    return dataComanda;
+int Comanda::getDurata() const {
+    return durata;
 }
 
-int Comanda::getProcesareTimp() const{
-    return procesareTimp;
+double Comanda::getValoare() const {
+    return valoare;
 }
 
-double Comanda::getValoareComanda() const{
-    return valoareComanda;
+void Comanda::adaugaProdus(Produs* produs) {
+    produse.push_back(produs);
+    calculeazaValoare();
 }
 
-bool Comanda::comandaValida() const {
-    if( valoareComanda < 100.0) return false;
-
-    int nrDisc = 0;
-    int nrArticol = 0;
-    for(const auto &produs : produseComandate){
-        if(dynamic_cast<Disc*>(produs) != nullptr || dynamic_cast<DiscVintage*>(produs) != nullptr){
-            nrDisc++;
-        }
-        else if ( dynamic_cast<ArticolVestimentar*>(produs) != nullptr ){
-            nrArticol++;
-        }
+void Comanda::calculeazaValoare() {
+    valoare = 0.0;
+    for (const auto& produs : produse) {
+        valoare += produs->getPretBaza();
     }
-    return nrDisc <= 5 && nrArticol <= 3;
 }
 
-void Comanda::afisareaComenzii() const{
-    cout << "Id comanda: " << idComanda << "\n";
-    cout << "Data Comenzii: " << dataComanda.tm_mday << "/" << dataComanda.tm_mon + 1 << "/" << dataComanda.tm_year + 1900 << "\n";
-    cout << "Durata de procesare: " << procesareTimp << " units\n";
-    cout << "Valoarea comenzii: " << valoareComanda << "\n";
-    cout << "Produse:\n";
-    for (const auto &produs : produseComandate) {
+vector<Produs*> Comanda::getProduse() const {
+    return produse;
+}
+
+void Comanda::afiseazaDetalii() const {
+    std::cout << "ID Comanda: " << idComanda << "\n";
+    std::cout << "Data Comenzii: " << dataComenzii.tm_mday << "/" << dataComenzii.tm_mon + 1 << "/" << dataComenzii.tm_year + 1900 << "\n";
+    std::cout << "Durata: " << durata << "\n";
+    std::cout << "Valoare: " << valoare << "\n";
+    std::cout << "Produse:\n";
+    for (const auto& produs : produse) {
         produs->afiseazaDetalii();
-        cout << "-------------------\n";
     }
 }
-

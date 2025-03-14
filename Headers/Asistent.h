@@ -9,6 +9,6 @@ using namespace std;
 class Asistent: public Angajat{
 public:
     Asistent(const int&, const string&, const string&, const string&,const tm&);
-    void calculeazaSalariu();
+    double calculeazaSalariu() override;
     void afiseazaDetalii();
 };

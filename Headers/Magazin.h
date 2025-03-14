@@ -1,40 +1,33 @@
+#include <vector>
 #include "Angajat.h"
 #include "Produs.h"
 #include "Comanda.h"
-#include <iostream>
-#include <cstring>
-#include <vector>
+#pragma once
 
 using namespace std;
 
-class Magazin{
-protected:
+class Magazin {
+private:
     vector<Angajat*> angajati;
     vector<Produs*> produse;
-    vector<Comanda> comenzi;
+    vector<Comanda> comenziInAsteptare;
+    vector<Comanda> comenziProcesate;
+
 public:
-    Magazin() = default;
-    ~Magazin();
+    Magazin();
+    void adaugaAngajat(Angajat* angajat);
+    void stergeAngajat(int id);
+    void modificaAngajat(int id, string& nume, string& prenume);
+    void afiseazaAngajat(int id) const;
+    void afiseazaTotiAngajatii() const;
 
-    // Gestionarea angajatilor
-    void adaugaAngajat(Angajat*);
-    void stergeAngajat(int);
-    void afiseazaAngajati() const;
+    void adaugaProdus(Produs* produs);
+    void stergeProdus(int cod);
+    void modificaStocProdus(int cod, int stoc);
+    void afiseazaProdus(int cod) const;
+    void afiseazaToateProdusele() const;
 
-    // Gestionarea produselor
-    void adaugaProdus(Produs*);
-    void stergeProdus(int);
-    void modificaStoc(int, int);
-    void afiseazaProduse() const;
-
-    // Procesarea comenzilor
-    void adaugaComanda(const Comanda&);
-    void proceseazaComenzi();
-
-    // Raportare
-    Angajat* angajatCuCeleMaiMulteComenzi() const;
-    vector<Angajat*> topAngajatiValoareComenzi() const;
-    vector<Angajat*> topAngajatiSalarii() const;
-    void genereazaRaportCSV(const string&, const vector<string>&) const;
-
+    void proceseazaComanda(const Comanda& comanda);
+    void afiseazaRaport() const;
 };
+

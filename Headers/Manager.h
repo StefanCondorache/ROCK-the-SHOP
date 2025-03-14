@@ -8,8 +8,8 @@ using namespace std;
 
 class Manager: public Angajat{
 public:
-    Manager(int&, string&, string&, string&, tm&);
-    void calculeazaSalariu();
+    Manager(const int&, string, string, string, tm);
+    double calculeazaSalariu() override;
     void afiseazaDetalii();
 };
 

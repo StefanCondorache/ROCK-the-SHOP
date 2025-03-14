@@ -6,7 +6,6 @@
 #include "Manager.h"
 #include "Asistent.h"
 #include "OperatorComenzi.h"
-#include "Magazin.h"
 #include "Disc.h"
 #include "DiscVintage.h"
 #include "ArticolVestimentar.h"
@@ -44,26 +43,23 @@ bool isAtLeast18YearsOld(const std::string& cnp) {
 
     int year, month, day;
 
-    // Extract birth date from CNP
     int century = (cnp[0] - '0');
     if (century == 1 || century == 2) {
-        year = 1900 + std::stoi(cnp.substr(1, 2));
+        year = 1900 + stoi(cnp.substr(1, 2));
     } else if (century == 3 || century == 4) {
-        year = 1800 + std::stoi(cnp.substr(1, 2));
+        year = 1800 + stoi(cnp.substr(1, 2));
     } else if (century == 5 || century == 6) {
-        year = 2000 + std::stoi(cnp.substr(1, 2));
+        year = 2000 + stoi(cnp.substr(1, 2));
     } else {
-        throw std::invalid_argument("Invalid century digit in CNP");
+        throw invalid_argument("Invalid century digit in CNP");
     }
 
-    month = std::stoi(cnp.substr(3, 2));
-    day = std::stoi(cnp.substr(5, 2));
+    month = stoi(cnp.substr(3, 2));
+    day = stoi(cnp.substr(5, 2));
 
-    // Get current date
-    std::time_t t = std::time(nullptr);
-    std::tm* now = std::localtime(&t);
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
 
-    // Calculate age
     int age = now->tm_year + 1900 - year;
     if (now->tm_mon + 1 < month || (now->tm_mon + 1 == month && now->tm_mday < day)) {
         age--;
@@ -72,28 +68,3 @@ bool isAtLeast18YearsOld(const std::string& cnp) {
     return age >= 18;
 }
 
-bool isValidMarket(Magazin& market){
-    int nrManager = 0;
-    int nrOperator = 0;
-    int nrAsistent = 0;
-    for(const auto& angajat : market->angajati){
-        if( typeof(angajat) == typeof(Manager) ){ nrManager++; }
-        if( decltype(angajat) == decltype(OperatorComenzi) ){ nrOperator++; }
-        if( decltype(angajat) == decltype(Asistent) ){ nrAsistent++; }
-    }
-    return ( nrManager == 1 && nrOperator >= 3 && nrAsistent >= 1);
-
-
-}
-
-bool gotEnoughStuff(Magazin &market){
-    int nrDisc = 0;
-    int nrVintage = 0;
-    int nrArticol = 0;
-    for(auto produs : market->produse){
-        if( decltype(produs) == decltype(Disc){ nrDisc++; }
-        if( decltype(produs) == decltype(DiscVintage){ nrVintage++; }
-        if( decltype(produs) == decltype(ArticolVestimentar){ nrArticol++; }
-    }
-    return ( nrDisc >= 2 && nrVintage >= 2 && nrArticol >= 2 );
-}

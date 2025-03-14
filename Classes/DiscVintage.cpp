@@ -10,6 +10,9 @@ DiscVintage::DiscVintage(const int &cod, const string &nume, int stoc, double pr
     if( coefRaritate >= 1 && coefRaritate <= 5){
         coeficientRaritate = coefRaritate;
     }
+    else{
+        throw invalid_argument("Coeficientul de raritate trebuie să fie între 1 și 5.");
+    }
 }
 
 void DiscVintage::calculeazaPretFinal(){
