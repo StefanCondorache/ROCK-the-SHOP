@@ -1,8 +1,7 @@
 **# ROCK-the-SHOP**
 **Sistem pentru administrarea unui magazin**
 
-Pe alocuri veti intalni erori atat logice, cat si ilogice.
-Proiect in decurs de lucru, fara testarea corner cazurilor limită.
+Proiect fara testarea corner cazurilor limită.
 
 *Funcționalități minimale*
 
